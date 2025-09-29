@@ -57,40 +57,6 @@ Presets are stored as JSON files in the `src/presets/` directory. Each preset co
 - `sections`: Ordered list of section definitions (title, list text, defaults)
 - `defaults`: Default generation settings (model, seed, batch, concurrency)
 
-### Available Presets
-- `default.json`: Basic preset with minimal defaults
-- `HWS14.json`: Detailed preset for HWS14 action figure photography
-- `ORJ.json`: Preset for ORJ character photography
-
-### Creating Custom Presets
-Create a new `.json` file in the `src/presets/` directory following this structure:
-```json
-{
-  "instructions": "Your custom LLM instructions...",
-  "sections": [
-    {
-      "id": "custom-pre",
-      "title": "Pre",
-      "list": "your pre options",
-      "selections": [],
-      "isRandomized": true
-    },
-    {
-      "id": "custom-post",
-      "title": "Post",
-      "list": "your post options",
-      "selections": [],
-      "isRandomized": false
-    }
-  ],
-  "defaults": {
-    "model": "gpt-4o-mini",
-    "seed": -1,
-    "batch": 1,
-    "concurrency": 4
-  }
-}
-```
 
 ## Development
 
