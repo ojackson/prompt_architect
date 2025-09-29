@@ -1,0 +1,479 @@
+/* ============================
+   Theme tokens
+============================= */
+:root {
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --card: #ffffff;
+  --accent: #111111;
+  --accent-fg: #ffffff;
+  --ring: 0 0 0 3px rgba(59, 130, 246, 0.35);
+
+  /* spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* control sizing */
+  --ctrl-h: 40px;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f14;
+    --fg: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2937;
+    --card: #0f141a;
+    --accent: #2563eb;
+    --accent-fg: #f8fafc;
+  }
+}
+
+/* ============================
+   Base
+============================= */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.container {
+  max-width: 980px;
+  margin: var(--space-8) auto;
+  padding: var(--space-4);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-top: none;
+  background: var(--bg);
+  border-radius: 0 8px 8px 8px;
+  margin-top: -1px;
+  position: relative;
+  z-index: 0;
+  padding: var(--space-3);
+}
+
+a { color: var(--accent); }
+::selection { background: rgba(37, 99, 235, 0.25); }
+
+/* ============================
+   Button Styles
+============================= */
+button, .btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  user-select: none;
+}
+
+button:hover:not(:disabled), .btn:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active:not(:disabled), .btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled, .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Button variants */
+.btn-primary, button.primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover:not(:disabled), button.primary:hover:not(:disabled) {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn-secondary, button.secondary {
+  background: var(--bg);
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+.btn-outline, button.outline {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline:hover:not(:disabled), button.outline:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.btn-success, button.success {
+  background: #10b981;
+  color: white;
+  border-color: #10b981;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover:not(:disabled), button.success:hover:not(:disabled) {
+  background: #059669;
+  color: white;
+  border-color: #059669;
+}
+
+.btn-sm, button.small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-lg, button.large {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* ============================
+   Forms
+============================= */
+label > div:first-child {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+input, select, textarea {
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  min-height: 32px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+textarea { min-height: 80px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: var(--ring); }
+input[disabled], select[disabled], textarea[disabled] { opacity: .6; cursor: not-allowed; }
+input.mono, textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* ============================
+   Layout helpers
+============================= */
+.section {
+  display: grid;
+  gap: 4px;
+  margin-bottom: var(--space-2);
+}
+
+.section.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) 0;
+  margin-bottom: var(--space-4);
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.section-title.header-title {
+  font-size: 16px;
+  color: var(--fg);
+  text-transform: none;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ============================
+   Section Dividers
+============================= */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--space-4) 0;
+  border: none;
+}
+
+.section-divider.thick {
+  height: 2px;
+  background: var(--border);
+}
+
+.section-divider.dotted {
+  height: 1px;
+  background: none;
+  border-top: 1px dotted var(--border);
+}
+
+/* ============================
+   PromptArchitect Specific Styles
+============================= */
+.prompt-architect-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.prompt-architect-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prompt-architect-section:last-child {
+  margin-bottom: 0;
+}
+
+.prompt-architect-section h3 {
+  margin: 0 0 var(--space-3) 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.prompt-architect-section h3::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Section header with remove button */
+.section-header-with-remove {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  gap: var(--space-2);
+}
+
+.section-title-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.section-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* Section Order Controls */
+.section-order-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.btn-order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.btn-order:hover:not(:disabled) {
+  background: var(--border);
+  color: var(--fg);
+}
+
+.btn-order:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.btn-order:disabled:hover {
+  background: transparent;
+  color: var(--muted);
+}
+
+/* X Remove Button */
+.btn-remove {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-remove::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.btn-remove:hover:not(:disabled) {
+  background: #ff4444;
+  color: white;
+  border-color: #ff4444;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+}
+
+.btn-remove:hover:not(:disabled)::before {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-remove:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* Add Section Button Container */
+.add-section-container {
+  text-align: center;
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+}
+
+.add-section-container .btn {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-6);
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.add-section-container .btn:hover:not(:disabled) {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================
+   Utilities
+============================= */
+.muted { color: var(--muted); }
+
+/* ============================
+   Error Boundary
+============================= */
+.error-boundary {
+  padding: 20px;
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  margin: 16px 0;
+}
+
+/* ============================
+   Responsive Design
+============================= */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-2) !important;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+  
+  .section-actions {
+    justify-content: center;
+  }
+}
