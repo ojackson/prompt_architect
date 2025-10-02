@@ -18,9 +18,7 @@ A focused React application for generating AI image prompts using structured sce
    npm install
    ```
 
-2. Set up your OpenAI API key in `src/config/openai.ts`
-
-3. Start the development server:
+2. Start the development server:
    ```bash
    npm run dev
    ```
